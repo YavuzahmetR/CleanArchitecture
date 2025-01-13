@@ -48,7 +48,16 @@ namespace CleanArchitecture.WebApi
             builder.Services.AddAuthentication().AddJwtBearer();
             builder.Services.AddAuthorization();
 
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins("https://localhost:7260/swagger/index.html").
+                    WithMethods("POST").
+                    AllowAnyHeader().
+                    AllowCredentials();
+                });
+            });
             builder.Services.AddScoped<ICarService, CarService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICarRepository, CarRepository>();
@@ -113,6 +122,8 @@ namespace CleanArchitecture.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("CorsPolicy");
             app.UseExceptionMiddleware();
 
             app.UseHttpsRedirection();
