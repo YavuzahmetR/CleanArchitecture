@@ -14,7 +14,7 @@ namespace CleanArchitecture.Domain.Entitites
             Id = Guid.NewGuid().ToString();
         }
         public string FullName { get; set; } = null!;
-        public string RefreshToken { get; set; } = null!;
+        public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }

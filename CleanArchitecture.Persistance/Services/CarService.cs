@@ -47,8 +47,10 @@ namespace CleanArchitecture.Persistance.Services
 
         public async Task<PaginationResult<Car>> GetAllCarsAsync(GetAllCarQuery getAllCarsQuery, CancellationToken cancellationToken)
         {
-            return await _carRepository.Where(p=> p.Name.ToLower().Contains(getAllCarsQuery.Search.ToLower()))
-                .ToPagedListAsync(getAllCarsQuery.PageNumber, getAllCarsQuery.PageSize, cancellationToken);
+            return await _carRepository.Where(p =>
+            string.IsNullOrEmpty(getAllCarsQuery.Search) ||
+            p.Name.StartsWith(getAllCarsQuery.Search))
+        .ToPagedListAsync(getAllCarsQuery.PageNumber, getAllCarsQuery.PageSize, cancellationToken);
 
         }
     }
