@@ -1,1 +1,1 @@
-This project was developed to showcase my software development skills and gain practical experience by applying Clean Architecture principles. I worked independently using the technologies and design patterns I have learned. The goal was not to create a final product but to contribute to my learning and experience process. The project utilizes modern software tools and techniques such as ASP.NET Core, Entity Framework Core, CQRS, and the Repository Pattern.
+
